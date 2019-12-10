@@ -1,0 +1,75 @@
+<app-file *ngIf="view"></app-file>
+<app-navbar></app-navbar>
+<div class="container full w-100 p-0">
+    <div class=" d-flex profile-image w-10 align-items-center justify-content-center"
+        [ngStyle]="{'background-image':'linear-gradient( rgb(12, 12, 12, 0), rgb(12, 12, 12)) , url(' +site + userData.profileBackgroundUrl + ')'}"
+        style="background-size: cover;
+    background-position: center;">
+
+        <div class="container-userdata">
+            <div class="row">
+                <div class="col d-flex align-items-center justify-content-center">
+                    <div class="avatar" [ngStyle]="{'background-image':'url('  +site + userData.profileThumbnail + ')'}"
+                        style="background-size: cover;
+    background-position: center;">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex align-items-center justify-content-center">
+                    <div class="username w-fit">
+                        {{userData.username}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex align-items-center justify-content-center">
+                    <div class="fullname w-fit">
+                        {{userData.fullName}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex align-items-center justify-content-center">
+                    <div class="description wwb w-fit">
+                        {{userData.description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="bar d-flex align-items-center justify-content-center">
+        <div class="w-75 breadcrumbs">
+        </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center align-content-top w-75 content-container">
+            <!--sdadsdaas-->
+            <div *ngFor="let post of posts" class="imageborder" (click)="turnView(post)">
+                <div *ngIf="post.contentType=='PHOTO'">
+                    <div class="image" [ngStyle]="{'background-image':'url('  +site + post.thumbnail + ')'}" style="background-size: cover;
+                                background-position: center;">
+                    </div>
+                    <div class="title">
+                        {{post.title}}
+                    </div>
+                </div>
+                <div *ngIf="post.contentType=='VIDEO'">
+                    <div class="image" [ngStyle]="{'background-image':'url('  +site + post.vidPhotoUrl + ')'}" style="background-size: cover;
+                                        background-position: center;">
+                    </div>
+                    <div class="title">
+                        {{post.title}}
+                    </div>
+                </div>
+            </div>
+            <!--sadasdasdasdasdasdads-->
+
+            <!--sadasdasdasdasdasdads-->
+        </div>
+    </div>
+</div>

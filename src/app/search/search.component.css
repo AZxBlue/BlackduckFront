@@ -1,0 +1,107 @@
+.profile-image {
+    background-size: cover, cover;
+    background-position: center, center;
+    background-attachment: scroll, fixed;
+    height: 90vh;
+    padding: 0px;
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+
+.w-fit {
+    width: fit-content;
+}
+
+.username {
+    color: #FFFFFF;
+    font-size: 32px;
+    text-shadow: 0px 0px 2px #000000;
+    font-weight: bold; 
+}
+
+.fullname{
+    color: #FFFFFF;
+    font-size: 28px;
+    text-shadow: 0px 0px 2px #000000;
+    font-weight: bold; 
+}
+
+.description{
+    color: #FFFFFF;
+    font-size: 16px;
+    text-shadow: 0px 0px 2px #000000;
+    font-weight: bold; 
+}
+.wwb{
+    max-width: 40vw!important;
+    word-wrap:break-word !important;
+}
+
+.avatar {
+    border: 3px solid white;
+    border-radius: 100%;
+    width: 20vh;
+    height: 20vh;
+    background-color: darkslategray;
+}
+
+@font-face {
+    font-family: titleFont;
+    src: url("/assets/Risaltyp_024.ttf");
+}
+
+.imageborder {
+    border: 3px solid white;
+    padding-bottom: 2px;
+    background: white;
+    border-radius: 2px;
+    width: fit-content;
+    margin: 15px;
+}
+
+.image {
+    min-width: 120px;
+    min-height: 120px;
+    width: 12vw;
+    height: 12vw;
+}
+
+.content-container {
+    padding: 40px;
+}
+
+.container-userdata {
+    width: fit-content;
+}
+
+.title {
+    font-family: titleFont;
+    font-size: 28px;
+    color: rgb(12, 11, 26)
+}
+
+.breadcrumbs {
+    font-size: 32px;
+    color: rgb(219, 219, 219);
+}
+
+.search {
+    font-size: 64px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 0px 0px 2px #000000;
+}
+
+.bar {
+    width: 100%;
+}
+
+.m-0 {
+    margin: 0px;
+}
+
+.full {
+    min-height: 100%;
+    min-width: 100%;
+    background-color: rgb(12, 12, 12);
+}

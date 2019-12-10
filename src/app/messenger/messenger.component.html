@@ -1,0 +1,132 @@
+<div class="full-bg p-0">
+    <div class="containter p-0 w-100 h-100">
+        <div class="row w-100 h-100 m-0">
+            <div class="col-3 side h-100 pp">
+                <div class="user-container h-99">
+                    <div class="container p-0 w-100 h-100">
+                        <div class="d-flex w-100 searchrow">
+                            <div class="d-flex av text-right align-items-center justify-content-center sicon">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <div class="d-flex flex-fill  align-items-center name p-2">
+                                <input class="blacksearch p0 w-100 slim" [(ngModel)]="search" (keyup)="searchUsers()"
+                                    type="text" placeholder="search user" aria-label="Search">
+                            </div>
+                        </div>
+                        <div *ngIf="search == ''; else searchTemp" class="p-0 h-90 ova">
+                            <div *ngFor="let ud of users" (click)="selectConv(ud)"
+                                [ngStyle]="selectedConv==ud && {'border': '1px solid gold'}" class="d-flex w-100 mb-1">
+                                <div class="av"
+                                    [ngStyle]="{'background-image':'url(' + site + ud.user2.profilePhotoUrl + ')'}"
+                                    style="background-size: cover; background-position: center;">
+
+                                </div>
+                                <div class="d-flex flex-fill  align-items-center name p-2"
+                                    [ngStyle]="{'background-image':'linear-gradient( rgba(0, 0, 0, 0.7) 100%, rgba(0, 0, 0, 0.7)100%) ,url(' + site + ud.user2.profilePhotoUrl + ')'}"
+                                    style="background-size: cover, cover; background-position: center, center;">
+                                    {{ud.user2.fullName}}
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #searchTemp>
+                            <div class="p-0 h-90 ova">
+                                <div *ngFor="let sr of searchResults" (click)="createConv(sr)"
+                                    class="d-flex w-100 mb-1">
+                                    <div class="av"
+                                        [ngStyle]="{'background-image':'url(' + site + sr.profilePhotoUrl + ')'}"
+                                        style="background-size: cover; background-position: center;">
+
+                                    </div>
+                                    <div class="d-flex flex-fill  align-items-center name p-2"
+                                        [ngStyle]="{'background-image':'linear-gradient( rgba(0, 0, 0, 0.7) 100%, rgba(0, 0, 0, 0.7)100%) ,url(' + site + sr.profilePhotoUrl + ')'}"
+                                        style="background-size: cover, cover; background-position: center, center;">
+                                        {{sr.fullName}}
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="users" class="col-6 h-100 padding-bottom-10">
+                <div *ngIf="users.length>-1; else noMessages" class="container h-100">
+                    <div #scrollMe id="msgContainer" class="row h-80 align-items-end ova">
+                        <div class="col ">
+                            <div *ngIf="firstConf ==false" class="container">
+                                <div *ngFor="let msg of messages; let last = last">
+                                    <div *ngIf="msg.fromUser.fullName == userInfo.fullName; else diffMsg"
+                                        class="row w-100 justify-content-end d-flex">
+                                        <div class="msg-s m-w-60">
+                                            {{msg.message}}
+                                        </div>
+                                    </div>
+                                    <ng-template #diffMsg>
+                                        <div class="row w-100 justify-content-start d-flex">
+                                            <div class="msg-r m-w-60">
+                                                {{msg.message}}
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    {{last ? scrollToBottom() : ''}}
+                                </div>
+                                <div *ngIf="showErr" class="w-100 text-center red">Message couldn't be sent via messenger. Please, check
+                                    your internet connection!</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row h-10 p-0">
+                        <div class="col-11">
+                            <textarea [(ngModel)]="message" class="w-100 textfield-transparent" name="description"
+                                rows="3"></textarea>
+                        </div>
+                        <div class="col-1 justify-content-center align-items-center d-flex">
+                            <button class="btn btn-warning" (click)="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #noMessages><span style="color: #FFFFFF">No messages could be found</span></ng-template>
+            </div>
+            <div class="col-3">
+                <div class="container p-0 w-100 h-100">
+                    <div class="row h-100">
+                        <div class="container">
+                            <div class="row h-100">
+                                <div class=" d-flex col h-100 align-items-center justify-content-center"
+                                    [ngStyle]="{'background-image':'linear-gradient( to left, rgba(14, 14, 14, 0), rgba(14, 14, 14)) , url('+ site + userInfo.profileBackgroundUrl + ')'}"
+                                    style="background-size: cover, cover;
+                                    background-position: center, center;">
+
+                                    <div class="col align-items-center justify-content-center w-100">
+                                        <div class="row">
+                                            <div class="col d-flex align-items-center justify-content-center p-0">
+                                                <div class="avatar" style="background-size: cover;
+                                        background-position: center;"
+                                                    [ngStyle]="{'background-image':'url(' + site + userInfo.profilePhotoUrl + ')'}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row text-center">
+                                            <div class="col name align-items-center justify-content-center">
+                                                {{userInfo.fullName}}
+                                            </div>
+                                        </div>
+                                        <div class="row text-center white">
+                                            <div class="col">
+                                                <a href="javascript:; " [routerLink]="['/home']">Home</a> | <a
+                                                    href="javascript:; "
+                                                    [routerLink]="['/user/', userInfo.username]">Profile</a> |
+                                                <a href="javascript:; " [routerLink]="['/edit']">Edit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

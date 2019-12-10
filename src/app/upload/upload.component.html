@@ -1,0 +1,131 @@
+<app-navbar></app-navbar>
+<div class='fullbg'>
+    <section class="mh-100">
+        <header class="container mh-100">
+            <div class="d-flex align-items-center justify-content-center mh-100 pt-100">
+                <div class="d-flex flex-column content w-100">
+
+                    <div class="container w-100">
+                        <div class="row">
+                            <div class="col text-center">
+                                <h2> Upload</h2>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col text-center">
+                                <a href="javascript:; " class="choice" (click)="swapToImage()"><i class="fa fa-camera"
+                                        aria-hidden="true"></i>&nbsp;Image</a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a href="javascript:;" id ="uvideo" class="choice" (click)="swapToVideo()"><i
+                                        class="fa fa-video-camera" aria-hidden="true">
+                                    </i>&nbsp;Video</a>
+                            </div>
+                        </div>
+                        <ng-template [ngIf]="uploadVideo==false">
+                            <div class="row padding-top-10">
+                                <div class="col text-center w-100">
+                                    <label class="w-100  w-100 text-center">
+                                        <h5 id="imag" class="hover-light">Select image</h5>
+                                        <input id="image" style="display: none;" #file type="file" name="file"
+                                            class="w-100" accept='image/*' (change)="preview(file.files)" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div *ngIf="imgURL" class="row padding-top-10">
+                                <div class="col text-center w-100 ">
+                                    <img [src]="imgURL" class='preview textfield-transparent p-10' />
+                                </div>
+                            </div>
+
+                        </ng-template>
+                        <ng-template [ngIf]="uploadVideo==true">
+                            <div *ngIf="imgURL" class="row padding-top-10">
+                                <div class="col text-center w-100 ">
+                                    <img [src]="imgURL" class='preview textfield-transparent p-10' />
+                                </div>
+                            </div>
+                            <div class="row padding-top-10">
+                                <div class="col text-center w-100">
+                                    <label class="w-100  w-100 text-center">
+                                        <h5 class="hover-light">Select video file</h5>
+                                        <input id="vid" style="display: none;" #filev type="file" class="w-100" name="file"
+                                            accept='video/*' (change)="videoupload(filev.files)" />
+
+                                    </label>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <div class="row padding-top-10">
+                            <div class="col text-center">
+                                <input id = "title" class="blacksearch p0 w-100" type="text" [(ngModel)]="title"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Title" aria-label="Search">
+                            </div>
+                        </div>
+                        <div class="row padding-top-10">
+                            <div class="col text-center">
+                                <textarea id= "description" class="w-100 textfield-transparent" [(ngModel)]="description"
+                                    (keyup)="findHashtags()" name="message" rows="3">Description</textarea>
+                            </div>
+                        </div>
+                        <div class="row padding-top-10">
+                            <div class="col">
+                                <span *ngFor="let hashtag of hashtags">
+                                    {{hashtag}}&nbsp;&nbsp;
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row padding-top-10">
+                            <div class="col">
+                                Folder: {{selectedFolderStr.title}}
+                            </div>
+                        </div>
+                        <div class="row padding-top-10">
+                            <div
+                                class="col textfield-transparent d-flex flex-wrap justify-content-center align-content-top w-75">
+                                <div *ngFor="let folder of folders" class='p-2'>
+                                    <a href="javascript:;" class="choicefolder" (click)="selectFolder(folder)">
+                                        <div class="d-inline p-2"><i class="fa fa-folder" aria-hidden="true"></i></div>
+                                        <div class="d-inline p-2 folder">{{folder.title}}</div>
+                                    </a>
+                                </div>
+                                <div *ngIf="newFolder == false" class='p-2'>
+                                    <a id="addFolder" href="javascript:;" class="choicefolder" (click)="addFolder()">
+                                        <div class="d-inline p-2"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                                    </a>
+                                </div>
+                                <div *ngIf="newFolder" class='p-2'>
+                                    <a id= "postFolder" href="javascript:;" class="choicefolder" (click)="postFolder()">
+                                        <div  class="d-inline p-2" ><i class="fa fa-folder-open"
+                                                aria-hidden="true"></i></div>
+                                    </a>
+                                    <a href="javascript:;" class="choicefolder">
+                                        <div  *ngIf="folderPrivate == false" class="d-inline p-2"
+                                            (click)="changeFolderPrivacy()"><i class="fa fa-unlock-alt"
+                                                aria-hidden="true"></i></div>
+                                    </a>
+                                    <a href="javascript:;" class="choicefolder">
+                                        <div *ngIf="folderPrivate == true" class="d-inline p-2"
+                                            (click)="changeFolderPrivacy()"><i class="fa fa-lock"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                    </a>
+                                    <div  class="d-inline p-2"> <input id="folderName" class="blacksearch p0" type="text"
+                                            [(ngModel)]="newFolderName.folderName" [ngModelOptions]="{standalone: true}"
+                                            placeholder="Folder name"> </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row padding-top-10">
+                            <div class="col text-center">
+                                <button type="submit" id="uploadBTN" (click)="upload()" class="btn btn-upload">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </section>
+</div>

@@ -1,0 +1,149 @@
+<div class="allOver">
+    <div class="container w-100C">
+        <div class="row padding-top-10">
+            <div class="col text-right">
+                <a class="p-20 exit" (click)="exit()" href="javascript:;">
+                    <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col text-right ">
+            <div class="container p-20 bg-dark-m w-75">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="container">
+                            <div *ngIf="currentPost.contentType=='PHOTO'" class=" row">
+                                <div class="col">
+                                    <img *ngIf="currentPost.contentUrl" [src]="site + currentPost.contentUrl"
+                                        class="preview">
+                                </div>
+                            </div>
+                            <div *ngIf="currentPost.contentType=='VIDEO'" class="row">
+                                <div class="col text-center">
+                                    <vg-player (onPlayerReady)="onPlayerReady($event)">
+                                        <vg-scrub-bar>
+                                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                                        </vg-scrub-bar>
+                                        <vg-controls>
+                                            <vg-play-pause></vg-play-pause>
+
+                                            <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+                                            <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+                                            <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+                                            <vg-mute></vg-mute>
+                                            <vg-volume></vg-volume>
+
+                                            <vg-fullscreen></vg-fullscreen>
+                                        </vg-controls>
+                                        <video [vgMedia]="media" #media id="video" preload="auto" crossorigin>
+                                            <source [src]="site + currentPost.contentUrl" type="video/mp4">
+                                            <source [src]="site + currentPost.contentUrl" type="video/quicktime">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </vg-player>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col text-left title p-20-l">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                {{currentPost.title}}
+                                            </div>
+                                            <div class="col text-right">
+                                                <div class="rating">
+                                                    <span id="5" (click)="rate(5)">☆</span><span (click)="rate(4)"
+                                                        id="4">☆</span><span id="3" (click)="rate(3)">☆</span><span
+                                                        (click)="rate(2)" id="2">☆</span><span id="1"
+                                                        (click)="rate(1)">☆</span>
+                                                </div>
+                                                &nbsp;{{currentPost.rate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col avatar" *ngIf="currentPost.author.profileThumbnail"
+                                    [ngStyle]="{'background-image':'url('  +site + currentPost.author.profileThumbnail + ')'}"
+                                    style="background-size: cover;
+        background-position: center;">
+
+                                </div>
+                                <div class="col text-left username">
+                                    {{currentPost.author.fullName}}
+                                    <span class="date">
+                                        {{currentPost.creationDate| date:'shortDate'}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-left description">
+                                    {{currentPost.description}}
+                                </div>
+                            </div>
+                            <div class="row padding-top-10">
+                                <div class="col ov-a text-left">
+                                    <div class="container p-0" *ngFor="let comment of currentPost.comments">
+                                        <!--inside-->
+                                        <div class="row">
+                                            <div class="col-3 avatar"
+                                                [ngStyle]="{'background-image':'url('  +site + comment.author.profilePhotoUrl + ')'}"
+                                                style="background-size: cover;
+        background-position: center;">
+                                            </div>
+                                            <div class="col">
+                                                <div class="container p-0">
+                                                    <div class="row username p-l-10">
+                                                        {{comment.author.fullName}}
+                                                    </div>
+                                                    <div class="date">
+                                                        {{comment.author.creationDate| date:'shortDate'}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="comment.videoTime != 0 && comment.videoTime!=null" class="row">
+                                            {{comment.content}}
+                                        </div>
+                                        <div *ngIf="comment.videoTime != 0 && comment.videoTime!=null"
+                                            class="row description dotted">
+                                            <a href="javascript:;" (click)="goTo(comment.videoTime)"><i
+                                                    class="fa fa-clock-o" aria-hidden="true"> {{comment.videoTime/1000}}
+                                                    s</i>
+                                            </a>
+                                        </div>
+                                        <div *ngIf="comment.videoTime == 0 || comment.videoTime==null"
+                                            class="row description dotted">
+                                            {{comment.content}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row w-100">
+                                <div class="col text-left w-100">
+                                    Comment:
+                                    <textarea class="w-100 textfield-transparent" [(ngModel)]="comment" name="comment"
+                                        rows="3">Description</textarea>
+                                </div>
+                            </div>
+                            <div class="row w-100">
+                                <div class="col text-right w-100">
+                                    <button id="pst" type="submit" (click)="postComment()"
+                                        class="btn btn-warning">Post</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

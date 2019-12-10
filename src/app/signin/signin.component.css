@@ -1,0 +1,50 @@
+.fullbg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%), url('https://images.unsplash.com/photo-1506202687253-52e1b29d3527?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover, cover;
+}
+.content{
+    background-color: rgba(0, 0, 0, 0.651);
+    color: white;
+    border-radius: 20px;
+    padding: 40px;
+    min-width: 40%;
+}
+
+.w-90{
+    width: 85%!important;
+}
+.w-100{
+    width: 100% !important;
+}
+
+.pr-10{
+    padding-right :10px;
+}
+.padding-top-10{
+    padding-top: 10px;
+}
+
+.small-italian{
+    font-size: 15px;
+    font-style: italic;
+    color: gray
+}
+
+.small-italian-angry{
+    font-size: 15px;
+    font-style: italic;
+    color: red;
+}
+.textfield-transparent{
+    background-color: rgba(0, 0, 0, 0.651);
+    color: white;
+    border-radius: 20px;
+    padding: 5px;
+    border: 0px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}

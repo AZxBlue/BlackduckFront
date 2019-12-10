@@ -1,0 +1,283 @@
+<div class='fullbg'>
+        <section class="h-100">
+                <header class="container h-100">
+                        <div class="d-flex align-items-center justify-content-center h-100">
+                                <ng-template [ngIf]="register" [ngIfElse]="signin">
+                                        <div class="d-flex flex-column content" id="register">
+                                                <form name="form" #f="ngForm" novalidate (submit)="Register()">
+                                                        <div class="container">
+                                                                <div class="row">
+                                                                        <div class="col text-center">
+                                                                                <img src='assets/swanicon.png'>
+
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col text-center">
+                                                                                <h1 class="text align-self-center p-2">
+                                                                                        Register
+                                                                                </h1>
+                                                                        </div>
+                                                                </div>
+                                                                <!--E-MAIL-->
+                                                                <div class="row">
+                                                                        <div class="col">
+                                                                                <div class="container">
+                                                                                        <div class="row">
+                                                                                                <div class="pr-10">
+                                                                                                        <i class="fa fa-at gold"
+                                                                                                                aria-hidden="true"></i>
+                                                                                                </div>
+                                                                                                <div class="w-90">
+                                                                                                        <input id ="mail" class="blacksearch p0 w-100"
+                                                                                                                type="text"
+                                                                                                                placeholder="E-mail"
+                                                                                                                [(ngModel)]="info.email"
+                                                                                                                [ngModelOptions]="{standalone: true}">
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <!--Password-->
+                                                                <div class="row">
+                                                                        <div class="col">
+                                                                                <div class="container">
+                                                                                        <div class="row">
+                                                                                                <div class="pr-10">
+                                                                                                        <i class="fa fa-unlock-alt gold"
+                                                                                                                aria-hidden="true"></i>
+                                                                                                </div>
+                                                                                                <div class="w-90">
+                                                                                                        <input id ="pass" class="blacksearch p0 w-100"
+                                                                                                                type="password"
+                                                                                                                [(ngModel)]="info.password"
+                                                                                                                [ngModelOptions]="{standalone: true}"
+                                                                                                                placeholder="Password"
+                                                                                                                aria-label="Search">
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <!--Confirm Password-->
+                                                                <div class="row">
+                                                                        <div class="col">
+                                                                                <div class="container">
+                                                                                        <div class="row">
+                                                                                                <div class="pr-10">
+                                                                                                        <i class="fa fa-lock gold"
+                                                                                                                aria-hidden="true"></i>
+                                                                                                </div>
+                                                                                                <div class="w-90">
+                                                                                                        <input id ="pass2" class="blacksearch p0 w-100"
+                                                                                                                type="password"
+                                                                                                                [(ngModel)]="checkPassword"
+                                                                                                                [ngModelOptions]="{standalone: true}"
+                                                                                                                placeholder="Confirm Password"
+                                                                                                                aria-label="Search">
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col text-center">
+                                                                                <div *ngIf="passwordequality==false"
+                                                                                        class="small-italian-angry text-center w-100">
+                                                                                        Passwords are not equal!
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <!--Display Name-->
+                                                                <div class="row">
+                                                                        <div class="col">
+                                                                                <div class="container">
+                                                                                        <div class="row">
+                                                                                                <div class="pr-10">
+                                                                                                        <i class="fa fa-user-o gold"
+                                                                                                                aria-hidden="true"></i>
+                                                                                                </div>
+                                                                                                <div class="w-90">
+                                                                                                        <input id ="uname" class="blacksearch p0 w-100"
+                                                                                                                type="text"
+                                                                                                                [(ngModel)]="info.username"
+                                                                                                                [ngModelOptions]="{standalone: true}"
+                                                                                                                placeholder="Display name"
+                                                                                                                aria-label="Search">
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <!--Full name-->
+                                                                <div class="row">
+                                                                        <div class="col">
+                                                                                <div class="container">
+                                                                                        <div class="row">
+                                                                                                <div class="pr-10">
+                                                                                                        <i class="fa fa-user gold"
+                                                                                                                aria-hidden="true"></i>
+                                                                                                </div>
+                                                                                                <div class="w-90">
+                                                                                                        <input id ="fn" class="blacksearch p0 w-100"
+                                                                                                                type="text"
+                                                                                                                placeholder="Full name"
+                                                                                                                [(ngModel)]="info.fullName"
+                                                                                                                [ngModelOptions]="{standalone: true}"
+                                                                                                                aria-label="Search">
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <!--Description-->
+                                                                <div class="row">
+                                                                        <div class="col">
+                                                                                <div class="container">
+                                                                                        <div
+                                                                                                class="row float-center padding-top-10">
+                                                                                                <textarea id ="desc"
+                                                                                                        class="w-100 textfield-transparent"
+                                                                                                        name="message"
+                                                                                                        [(ngModel)]="info.description"
+                                                                                                        [ngModelOptions]="{standalone: true}"
+                                                                                                        rows="3"></textarea>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row" class="text-right">
+                                                                        <div *ngIf="info.description.length < 10"
+                                                                                class="small-italian">
+                                                                                {{info.description.length}}/125
+                                                                        </div>
+                                                                        <div *ngIf="info.description.length >= 10"
+                                                                                class="small-italian-angry">
+                                                                                {{info.description.length}}/125
+                                                                        </div>
+                                                                </div>
+                                                                <!--Button-->
+                                                                <div class="row">
+                                                                        <div class="col text-center padding-top-10">
+                                                                                <button id="pressReg" type="submit"
+                                                                                        class="btn btn-warning w-100">Register</button>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col text-center padding-top-10">
+                                                                                <button routerLink="/home" type="button"
+                                                                                        class="btn btn-danger w-100">Home</button>
+                                                                        </div>
+                                                                        <div class="col text-center padding-top-10">
+                                                                                <button (click)="swap()" type="button"
+                                                                                        class="btn btn-warning w-100" id="sg">Sign
+                                                                                        In</button>
+                                                                        </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                        <div class="col text-center padding-top-10">
+                                                                                {{message}}
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                </ng-template>
+                                <ng-template #signin>
+                                        <div class="d-flex flex-column content" id="signin">
+                                                <form name="form2" #f="ngForm" novalidate (submit)="SignIn()">
+                                                        <div class="container">
+                                                                <div class="row">
+                                                                        <div class="col text-center">
+                                                                                <img src='assets/swanicon.png'>
+
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col text-center">
+                                                                                <h1 class="text align-self-center p-2">
+                                                                                        Register
+                                                                                </h1>
+                                                                        </div>
+                                                                </div>
+                                                                <!--E-MAIL-->
+                                                                <div class="row">
+                                                                        <div class="col">
+                                                                                <div class="container">
+                                                                                        <div class="row">
+                                                                                                <div class="pr-10">
+                                                                                                        <i class="fa fa-at gold"
+                                                                                                                aria-hidden="true"></i>
+                                                                                                </div>
+                                                                                                <div class="w-90">
+                                                                                                        <input id="semail" class="blacksearch p0 w-100"
+                                                                                                                type="text"
+                                                                                                                placeholder="E-mail"
+                                                                                                                [(ngModel)]="linfo.username"
+                                                                                                                [ngModelOptions]="{standalone: true}">
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <!--Password-->
+                                                                <div class="row">
+                                                                        <div class="col">
+                                                                                <div class="container">
+                                                                                        <div class="row">
+                                                                                                <div class="pr-10">
+                                                                                                        <i class="fa fa-unlock-alt gold"
+                                                                                                                aria-hidden="true"></i>
+                                                                                                </div>
+                                                                                                <div class="w-90">
+                                                                                                        <input id="spassword" class="blacksearch p0 w-100"
+                                                                                                                type="password"
+                                                                                                                [(ngModel)]="linfo.password"
+                                                                                                                [ngModelOptions]="{standalone: true}"
+                                                                                                                placeholder="Password"
+                                                                                                                aria-label="Search">
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col text-center padding-top-10">
+                                                                                <h6>You don't have an account? Consider
+                                                                                        registering!</h6>
+                                                                        </div>
+                                                                </div>
+                                                                <!--Button-->
+                                                                <div class="row">
+                                                                        <div class="col text-center padding-top-10">
+                                                                                <button id="logIn" type="submit"
+                                                                                        class="btn btn-warning w-100">Sign
+                                                                                        in</button>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col text-center padding-top-10">
+                                                                                <button routerLink="/home" type="button"
+                                                                                        class="btn btn-danger w-100">Home</button>
+                                                                        </div>
+                                                                        <div class="col text-center padding-top-10">
+                                                                                <button (click)="swap()" type="button"
+                                                                                        class="btn btn-warning w-100" id="reg">Register</button>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col text-center padding-top-10">
+                                                                                {{message}}
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                </ng-template>
+
+                        </div>
+                </header>
+        </section>
+</div>

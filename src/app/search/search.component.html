@@ -1,0 +1,61 @@
+<app-file *ngIf="view"></app-file>
+<app-navbar></app-navbar>
+<div class="container full w-100 p-0">
+    <div class=" d-flex profile-image w-10 align-items-center justify-content-center"
+        [ngStyle]="bgImage!=null && {'background-image':'linear-gradient( rgb(12, 12, 12, 0), rgb(12, 12, 12)) , url(' +site + bgImage + ')'}"
+        style="background-size: cover;
+    background-position: center;">
+        <div class="container-userdata">
+            <div class="row">
+                <div class="col d-flex align-items-center justify-content-center">
+                    <div class="search wwb w-fit">
+                        {{searchText}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="bar d-flex align-items-center justify-content-center">
+        <div class="w-75 breadcrumbs">
+        </div>
+    </div>
+    <div *ngIf="users" class="d-flex align-items-center justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center align-content-top w-75 content-container">
+            <div *ngFor="let user of users" class="imageborder">
+                <div class="image" [routerLink]="['/user/', user.username]"
+                    [ngStyle]="{'background-image':'url('  +site + user.profilePhotoUrl + ')'}" style="background-size: cover;
+                    background-position: center;">
+
+                </div>
+                <div class="title">
+                    {{user.fullName}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="imgs" class="d-flex align-items-center justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center align-content-top w-75 content-container">
+            <div *ngFor="let post of imgs" class="imageborder" (click)="turnView(post)">
+                <div *ngIf="post.contentType=='PHOTO'">
+                    <div class="image" [ngStyle]="{'background-image':'url('  +site + post.contentUrl + ')'}" style="background-size: cover;
+                        background-position: center;">
+                    </div>
+                    <div class="title">
+                        {{post.title}}
+                    </div>
+                </div>
+                <div *ngIf="post.contentType=='VIDEO'">
+                    <div class="image" [ngStyle]="{'background-image':'url('  +site + post.vidPhotoUrl + ')'}" style="background-size: cover;
+                                background-position: center;">
+                    </div>
+                    <div class="title">
+                        {{post.title}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

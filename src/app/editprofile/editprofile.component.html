@@ -1,0 +1,90 @@
+<app-navbar></app-navbar>
+<div class='fullbg'
+    [ngStyle]="{'background-image':'linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%) , url(' +info.backgroundPicture + ')'}"
+    style="background-size: cover;
+    background-position: center;">
+    <section class="mh-100">
+        <header class="container mh-100">
+            <div class="d-flex align-items-center justify-content-center mh-100 pt-100">
+                <div class="d-flex flex-column content ">
+
+                    <div class="container w-100">
+                        <div class="row">
+                            <div class="col d-flex text-center justify-content-center align-items-center">
+                                <label>
+                                    <div class="avatar "
+                                        [ngStyle]="{'background-image':'url(' +info.profilePicture + ')'}" style="background-size: cover;
+    background-position: center;">
+                                        <i class="fa fa-pencil"></i>
+
+                                    </div>
+                                    <input id="image" style="display: none;" #bg type="file" class="w-100"
+                                        accept='image/*' (change)="changeAvatar(bg.files)" />
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col text-center">
+                                <input class="fullname p0 w-100" type="text" placeholder="Full Name"
+                                    [(ngModel)]="info.fullName" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+
+                        <div class="row padding-top-10">
+                            <div class="col text-center w-100">
+                                <label class="w-100  w-100 text-center">
+                                    <h5 class="hover-light">Select new background image</h5>
+                                    <input id="image" style="display: none;" #file type="file" class="w-100"
+                                        accept='image/*' (change)="preview(file.files)" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row padding-top-10">
+                            <div class="col text-left">
+                                Description:
+                            </div>
+                        </div>
+                        <div class="row padding-top-10">
+                            <div class="col text-center">
+                                <textarea class="w-100 textfield-transparent" [(ngModel)]="info.description"
+                                    name="description" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="row padding-top-10">
+                            <div class="col text-center">
+                                <input class="blacksearch p0 w-100" type="text" [(ngModel)]="info.email"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Change e-mail"
+                                    aria-label="Search">
+                            </div>
+                        </div>
+                        <div class="row padding-top-10">
+                            <div class="col text-center">
+                                <input class="blacksearch p0 w-100" type="password" [(ngModel)]="newPassword"
+                                    [ngModelOptions]="{standalone: true}" placeholder="New password"
+                                    aria-label="Search">
+                            </div>
+                        </div>
+                        <div class="row p-0">
+                            <div class="col text-right small-italian">
+                                Fill area only, if you want to change password
+                            </div>
+                        </div>
+
+                        <div class="row padding-top-10">
+                            <div class="col text-center">
+
+                            </div>
+                        </div>
+
+                        <div class="row padding-top-10">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-upload" (click)="confirm()">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </section>
+</div>
